@@ -1,0 +1,6 @@
+iframe#player type="text/html" width="640" height="390" src==("https://www.youtube.com/embed/#{@items.first.content_details.video_id}?enablejsapi=1&origin=#{CGI.escape(root_url.chomp('/'))}") frameborder="0"
+
+.count= @items.count
+
+= render 'load_videos', items: @items
+= render partial: 'playlist_item', collection: @items
