@@ -10,19 +10,21 @@ class Playlist
   video: (position) ->
     @items[position]
   videoByVid: (video_id) ->
-    position = $(".playlist-item[data-vid='#{video_id}']").data('position')
+    position = this.positionByVid(video_id) 
     this.video(position)
   setPosition: (video_id) ->
     video = this.videoByVid(video_id)
     $('.playlist-item.active').removeClass('active')
     $(".playlist-item[data-vid='#{video_id}']").addClass('active')
     $('#now-playing .title').html(video.snippet.title)
-    console.log video.snippet.description
-    description = video.snippet.description.replace(/https?:\/\/[\S]*/ig, (x) -> "<a href='#{x}'>#{x}</a>")
+    description = video.snippet.description.replace(/https?:\/\/[\S]*/ig, (x) -> "<a href='#{x}' target='_blank'>#{x}</a>")
     $('#now-playing .description pre').html(description)
+  positionByVid: (video_id) ->
+    $(".playlist-item[data-vid='#{video_id}']").data('position')
 
-videos = payload.map(JSON.parse)
-window.playlist = new Playlist(items: videos)
+if payload?
+  videos = payload.map(JSON.parse)
+  window.playlist = new Playlist(items: videos)
   
 window.onYouTubeIframeAPIReady = ->
   window.player = new (YT.Player)(
@@ -33,13 +35,29 @@ window.onYouTubeIframeAPIReady = ->
   return
 
 onPlayerReady = (event) ->
-  player.loadPlaylist(playlist.videoIds())
+  last_video = lastPlayedVid()
+  if last_video
+    position = playlist.positionByVid(last_video)
+  else
+    position = 0
+  playlist.playVideo(position)
 
 onPlayerStateChange = (event) ->
   if event.data == -1 # unstarted / new vid
     video_id = player.getVideoData().video_id
     playlist.setPosition(video_id)
+    updateCookie(video_id)
 
+updateCookie = (video_id) ->
+  h = {}
+  h[playlist_id] = video_id
+  cookie = Cookies.getJSON('playlists')
+  Cookies.set('playlists', $.extend(cookie, h))
+
+lastPlayedVid = ->
+  cookie = Cookies.getJSON('playlists')
+  cookie[playlist_id] if cookie
+  
 $(document).on 'click', '.playlist-item', (e) =>
   position = $(e.currentTarget).data('position')
   playlist.playVideo(position)

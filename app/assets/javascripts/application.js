@@ -12,4 +12,5 @@
 //
 //= require rails-ujs
 //= require local-time
+//= require js.cookie
 //= require_tree .
