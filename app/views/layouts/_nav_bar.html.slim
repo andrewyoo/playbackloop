@@ -1,0 +1,15 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand href=root_path
+    = app_name
+  button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      - if logged_in?
+        li.nav-item class=("active" if current_page?(account_url))
+          a.nav-link href='#'
+            | My Account
+    ul.navbar-nav
+      - if logged_in?
+        li.nav-item
+          a.nav-link href=logout_path Logout

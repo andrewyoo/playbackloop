@@ -1,7 +1,14 @@
-.thumb= image_tag playlist_item.snippet.thumbnails.medium.url
-.position= playlist_item.snippet.position
-.title= playlist_item.snippet.title
-.title= playlist_item.snippet.description
-.video_id= playlist_item.content_details.video_id
-.created_at= playlist_item.content_details.video_published_at
-hr /
+- video_id = playlist_item.content_details.video_id
+- classes = ['list-group-item', 'list-group-item-action', 'playlist-item']
+- classes << 'active' if playlist_item == playing
+- data = { position: playlist_item_counter, vid: video_id }
+
+a href=url_for(anchor: video_id) data=data class=classes.join(' ')
+  .infobar
+    .thumb= image_tag playlist_item.snippet.thumbnails.medium.url
+    .position
+      .badge.badge-secondary
+        | #{playlist_item.snippet.position + 1} / #{total_count}
+  .title
+    strong= playlist_item.snippet.title
+  .published_at= local_time(playlist_item.content_details.video_published_at, :date_only)

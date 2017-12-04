@@ -17,6 +17,9 @@ gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'slim-rails'
+gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'font-awesome-rails'
+gem 'local_time'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'

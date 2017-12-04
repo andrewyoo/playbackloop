@@ -1,27 +1,2 @@
 javascript:
-  video_ids = #{raw items.map { |i| i.content_details.video_id }}
-
-coffee:
-  window.onYouTubeIframeAPIReady = ->
-    window.player = new (YT.Player)(
-      'player',
-      events:
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange)
-    return
-
-  onPlayerReady = (event) ->
-    player.loadPlaylist(video_ids)
-    event.target.playVideo()
-    return
-
-  done = false
-  onPlayerStateChange = (event) ->
-    if event.data == YT.PlayerState.PLAYING and !done
-      # setTimeout stopVideo, 6000
-      done = true
-    return
-
-  stopVideo = ->
-    player.stopVideo()
-    return
+  payload = #{raw items.map(&:to_json)}
