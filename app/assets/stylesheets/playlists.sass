@@ -1,3 +1,17 @@
-// Place all the styles related to the playlists controller here.
-// They will automatically be included in application.css.
-// You can use Sass here: http://sass-lang.com/
+.playlist-item
+  position: relative
+  padding-left: 100px
+  min-height: 85px
+  .infobar
+    position: absolute
+    left: 10px
+  .thumb
+    img
+      width: 80px
+  .published_at
+    font-style: italic
+
+@include media-breakpoint-up(md)
+  #playlist-wrapper
+    overflow-y: scroll
+    max-height: calc(100vh - 60px)

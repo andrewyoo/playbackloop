@@ -41,7 +41,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    autoprefixer-rails (7.1.6)
+      execjs
     bindex (0.5.0)
+    bootstrap (4.0.0.beta2.1)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.3, < 2)
+      sass (>= 3.5.2)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.16.1)
@@ -69,6 +75,8 @@ GEM
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     google-api-client (0.17.3)
@@ -101,6 +109,7 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
     little-plugger (1.1.4)
+    local_time (2.0.0)
     logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
@@ -137,6 +146,7 @@ GEM
       omniauth (~> 1.0)
     os (0.9.6)
     pg (0.21.0)
+    popper_js (1.12.5)
     public_suffix (3.0.1)
     puma (3.11.0)
     rack (2.0.3)
@@ -245,12 +255,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap (~> 4.0.0.beta2.1)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  font-awesome-rails
   google-api-client
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  local_time
   omniauth-google-oauth2
   pg (~> 0.18)
   puma (~> 3.7)
