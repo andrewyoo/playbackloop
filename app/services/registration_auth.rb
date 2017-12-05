@@ -10,8 +10,9 @@ class RegistrationAuth
       u.name = auth_hash.info.name
       u.username = auth_hash.info.name
       u.avatar_url = auth_hash.info.image
-      u.access_token = auth_hash.credentials.token
+      # for google store in cache with expiration at 1 hour
+      # u.access_token = auth_hash.credentials.token
       u.refresh_token = auth_hash.credentials.refresh_token
-    end
+    end.tap { |u| Rails.cache.write(user.token_cache_key, auth_hash.credentials.token, expires_in: 59.minutes) }
   end
 end
