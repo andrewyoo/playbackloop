@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require local-time
+//= require popper
+//= require bootstrap-sprockets
 //= require js.cookie
+//= require local-time
 //= require_tree .

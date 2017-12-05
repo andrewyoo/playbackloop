@@ -2,6 +2,14 @@ module ApplicationHelper
   def app_name
     APP_NAME
   end
+  
+  def app_logo
+    str = 'PlaybackL'
+    str += fa_icon 'play-circle'
+    str += fa_icon 'play-circle'
+    str += 'P'
+    str
+  end
 
   def title(page_title)
     content_for(:title) { page_title + " | " + app_name }
@@ -24,5 +32,9 @@ module ApplicationHelper
 
   def robots(cmd)
     content_for(:robots) { cmd }
+  end
+  
+  def meta_desc(content)
+    content_for(:meta_desc) { content }
   end
 end
