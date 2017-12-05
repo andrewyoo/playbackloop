@@ -8,13 +8,17 @@ html lang="en"
       link rel='canonical' href=yield(:canonical)
     - if content_for?(:robots)
       meta name='robots' content=yield(:robots)
+    - if content_for?(:meta_desc)
+      meta name='description' content=yield(:meta_desc)
     = csrf_meta_tag
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto|Material+Icons'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
   body
     = render 'layouts/nav_bar'
-    = render 'layouts/flashes'
+    #flashes= render 'layouts/flashes'
     = yield
+    = render 'layouts/footer'
 
     script data-turbolinks-eval='false' src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"
     = javascript_include_tag 'application', 'data-turbolinks-eval': 'false'
+    = yield(:inline_js) if content_for?(:inline_js) 

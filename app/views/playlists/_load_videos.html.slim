@@ -1,3 +1,44 @@
 javascript:
   payload = #{raw items.map(&:to_json)}
   playlist_id = '#{@playlist.playlist_id}'
+
+coffee:
+  # async load iframe api
+  tag = document.createElement('script')
+  tag.src = 'https://www.youtube.com/iframe_api'
+  firstScriptTag = document.getElementsByTagName('script')[0]
+  firstScriptTag.parentNode.insertBefore tag, firstScriptTag
+
+  window.onYouTubeIframeAPIReady = ->
+    videos = payload.map(JSON.parse)
+    window.playlist = new Playlist(items: videos)
+    window.player = new (YT.Player)(
+      'player',
+      events:
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange)
+    return
+
+  onPlayerReady = (event) ->
+    last_video = lastPlayedVid()
+    if last_video
+      position = playlist.positionByVid(last_video)
+    else
+      position = 0
+    playlist.playVideo(position)
+
+  onPlayerStateChange = (event) ->
+    if event.data == -1 # unstarted / new vid
+      video_id = player.getVideoData().video_id
+      playlist.setPosition(video_id)
+      updateCookie(video_id)
+
+  updateCookie = (video_id) ->
+    h = {}
+    h[playlist_id] = video_id
+    cookie = Cookies.getJSON('playlists')
+    Cookies.set('playlists', $.extend(cookie, h))
+
+  lastPlayedVid = ->
+    cookie = Cookies.getJSON('playlists')
+    cookie[playlist_id] if cookie

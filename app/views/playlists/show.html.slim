@@ -1,13 +1,26 @@
+- title "#{@playlist_info.title} - #{@playlist_info.channel_title}"
+- meta_desc "#{@playlist_info.description}"
+
 .container-fluid
   .row
-    #now-playing.col-md-6
-      h4.title
+    #now-playing.col-md-7.mt-2
+      h1.h5.playlist-title alt=@playlist_info.description
+        = @playlist_info.title
+        em.small
+          |  by 
+          = link_to @playlist_info.channel_title, "https://www.youtube.com/channel/#{@playlist_info.channel_id}", target: '_blank'
       .player-wrapper
-        iframe#player type="text/html" width="640" height="390" src==("https://www.youtube.com/embed/#{@playing.content_details.video_id}?enablejsapi=1&origin=#{CGI.escape(root_url.chomp('/'))}&rel=0") frameborder="0"
-      .description.mt-2
+        iframe#player type="text/html" width="640" height="390" src==("https://www.youtube.com/embed/xxxxx?enablejsapi=1&origin=#{CGI.escape(root_url.chomp('/'))}&rel=0") frameborder="0"
+      h5.title.mt-2.mb-0
+      hr.mt-0
+      .description
         pre
-    #playlist-wrapper.col-md-6
-      #playlist
-        = render 'load_videos', items: @items
-        .list-group
-          = render partial: 'playlist_item', collection: @items, locals: { total_count: @items.count, playing: @playing }
+    #playlist-wrapper.col-md-5
+      #playlist-items
+        .text-center.pt-4
+          = fa_icon 'circle-o-notch spin 3x'
+      - content_for :inline_js
+        javascript:
+          $(function() {
+            $("#playlist-items").load("#{items_playlist_path(id: @playlist.playlist_id)}");
+          });

@@ -1,0 +1,3 @@
+= render 'load_videos', items: items
+.list-group
+  = render partial: 'playlist_item', collection: items, locals: { total_count: items.count, playing: playing }

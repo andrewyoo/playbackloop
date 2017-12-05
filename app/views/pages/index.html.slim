@@ -1,12 +1,31 @@
+- title 'Watch Youtube How You Want'
+
 .article.py-5.bg-primary.text-white
-  .container-fluid
+  .container-fluid.py-5
     .row.text-center
       .col
-        h1 Watch Youtube Playlists in Chronological Order
+        h1.h2 Watch Youtube Playlists in Chronological Order
         = form_with url: playlists_path, local: true do
           .row
             .offset-lg-3.col-lg-5.col-md-9.pr-md-0
               .form-group
-                = text_field_tag :playlist_id, nil, placeholder: 'Youtube Playist ID', class: 'form-control form-control-lg', required: true
-            .col-md-3.col-lg-2
-              = button_tag 'Search', class: 'btn btn-info btn-lg', data: { disable_with: 'Searching...' }, style: 'width: 100%', name: nil
+                = text_field_tag :playlist_id, nil, placeholder: 'Youtube Playlist ID or URL', class: 'form-control form-control-lg', required: true
+            .col-md-3.col-lg-1
+              = button_tag class: 'btn btn-warning btn-lg text-white', data: { disable_with: '...' }, style: 'width: 100%', name: nil do
+                = fa_icon 'search'
+
+.article.py-5
+  .container
+    .row.text-center
+      .col-sm-4
+        = fa_icon 'sort-amount-asc 3x', class: 'mb-3'
+        h3 Chronological Order
+        p Watch Youtube playlists in order from oldest to newest, as it should be
+      .col-sm-4
+        = fa_icon 'arrows-alt 3x', class: 'mb-3'
+        h3 Resize The Player
+        p Resize your browser window to change player size to put it in the corner
+      .col-sm-4
+        = fa_icon 'user-circle 3x', class: 'mb-3'
+        h3 Watch Your Playlists
+        p Sign up to access your subscriptions and playlists from here
