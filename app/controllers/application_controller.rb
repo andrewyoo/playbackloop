@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   def setup_youtube_service
     @ys = Google::Apis::YoutubeV3::YouTubeService.new
     @ys.key = Rails.application.secrets.google[:api_key]
-    #@ys.authorization = current_user.access_token if current_user
+    if current_user
+      @ys.authorization = Rails.cache.fetch(current_user.token_cache_key, expires_in: 59.minutes) do
+        GoogleTokenFetcher.new(current_user).fetch
+      end
+    end
   end
 end
