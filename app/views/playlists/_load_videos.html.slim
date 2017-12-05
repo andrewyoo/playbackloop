@@ -35,10 +35,10 @@ coffee:
 
   updateCookie = (video_id) ->
     h = {}
-    h[playlist_id] = video_id
+    h[playlist_id] = [video_id, 'date_asc']
     cookie = Cookies.getJSON('playlists')
     Cookies.set('playlists', $.extend(cookie, h))
 
   lastPlayedVid = ->
     cookie = Cookies.getJSON('playlists')
-    cookie[playlist_id] if cookie
+    cookie[playlist_id][0] if cookie

@@ -13,6 +13,7 @@ html lang="en"
     = csrf_meta_tag
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto|Material+Icons'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = render 'layouts/google_analytics' if Rails.env.production?
   body
     = render 'layouts/nav_bar'
     #flashes= render 'layouts/flashes'
