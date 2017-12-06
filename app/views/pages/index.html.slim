@@ -1,6 +1,6 @@
 - title 'Watch Youtube How You Want'
 
-.article.py-5.bg-primary.text-white
+.article.py-5.bg-gradient-primary.text-white
   .container-fluid.py-5
     .row.text-center
       .col
@@ -17,15 +17,33 @@
 .article.py-5
   .container
     .row.text-center
-      .col-sm-4
+      .col-sm-4.mb-2
         = fa_icon 'sort-amount-asc 3x', class: 'mb-3'
         h3 Chronological Order
-        p Watch Youtube playlists in order from oldest to newest, as it should be
-      .col-sm-4
+        p Watch Youtube playlists in order from oldest to newest, as it should be.
+      .col-sm-4.mb-2
         = fa_icon 'arrows-alt 3x', class: 'mb-3'
         h3 Resize The Player
-        p Resize your browser window to change player size to put it in the corner
-      .col-sm-4
+        p Resize your browser window to change player size for background watching.
+      .col-sm-4.mb-2
         = fa_icon 'user-circle 3x', class: 'mb-3'
         h3 Watch Your Playlists
-        p Sign up to access your subscriptions and playlists from here
+        p Sign up to access your subscriptions and playlists from here.
+
+.article.py-5.bg-light
+  - if @current_playlists.present?
+    .container.mb-4
+      .row
+        .col
+          h4.hr Recently Watched By You
+      .row
+        - @current_playlists.each do |p|
+          .col-4= render 'playlists/card', item: p
+        
+  .container
+    .row
+      .col
+        h4.hr Recently Watched By Others
+    .row
+      - @recent_playlists.each do |p|
+        .col-4= render 'playlists/card', item: p

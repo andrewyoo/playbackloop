@@ -13,6 +13,6 @@ class RegistrationAuth
       # for google store in cache with expiration at 1 hour
       # u.access_token = auth_hash.credentials.token
       u.refresh_token = auth_hash.credentials.refresh_token
-    end.tap { |u| Rails.cache.write(user.token_cache_key, auth_hash.credentials.token, expires_in: 59.minutes) }
+    end.tap { |u| Rails.cache.write(u.token_cache_key, auth_hash.credentials.token, expires_in: 59.minutes) }
   end
 end

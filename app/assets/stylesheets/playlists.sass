@@ -14,4 +14,8 @@
 @include media-breakpoint-up(md)
   #playlist-wrapper
     overflow-y: scroll
-    max-height: calc(100vh - 56px - 80px)
+    max-height: calc(100vh - #{$header-height} - #{$footer-height})
+
+.playlist-card
+  margin-left: -10px
+  margin-right: -10px
