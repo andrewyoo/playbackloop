@@ -1,0 +1,9 @@
+- snippet = item.snippet
+
+.playlist-card.card.mb-2
+  a href=playlist_path(id: item.id)
+    img.card-img-top.img-fluid src=snippet.thumbnails.high.url alt="#{snippet.title} by #{snippet.channel_title}"
+  .card-body
+    p= snippet.title
+    p.small.mb-0
+     | - #{snippet.channel_title}
