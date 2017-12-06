@@ -11,9 +11,13 @@ html lang="en"
     - if content_for?(:meta_desc)
       meta name='description' content=yield(:meta_desc)
     = csrf_meta_tag
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto|Material+Icons'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = render 'layouts/google_analytics' if Rails.env.production?
+    
+    link rel='apple-touch-icon' sizes='128x128' href=image_url('icon_128x128.png')
+    link rel='apple-touch-icon' sizes='256x256' href=image_url('icon_256x256.png')
+    link rel='icon' type='image/png' href=image_url('icon_32x32.png')
   body
     = render 'layouts/nav_bar'
     #flashes= render 'layouts/flashes'

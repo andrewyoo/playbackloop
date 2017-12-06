@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     end
   end
   
+  get 'about' => 'pages#about', as: :about
+  get 'terms' => 'pages#terms', as: :terms
+  get 'privacy' => 'pages#privacy', as: :privacy
   get 'login' => 'sessions#new', as: :login
   get 'logout' => 'sessions#destroy', as: :logout
   get '/auth/:provider/callback', to: 'sessions#create'

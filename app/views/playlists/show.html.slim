@@ -10,7 +10,7 @@
           |  by 
           = link_to @playlist_info.channel_title, "https://www.youtube.com/channel/#{@playlist_info.channel_id}", target: '_blank'
       .player-wrapper
-        iframe#player type="text/html" width="640" height="390" src==("https://www.youtube.com/embed/xxxxx?enablejsapi=1&origin=#{CGI.escape(root_url.chomp('/'))}&rel=0") frameborder="0"
+        iframe#player allowfullscreen='1' type="text/html" width="640" height="390" src==("https://www.youtube.com/embed/xxxxx?enablejsapi=1&origin=#{CGI.escape(root_url.chomp('/'))}&rel=0") frameborder="0"
       h5.title.mt-2.mb-0
       hr.mt-0
       .description

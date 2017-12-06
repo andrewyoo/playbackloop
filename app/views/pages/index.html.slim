@@ -19,7 +19,7 @@
     .row.text-center
       .col-sm-4.mb-2
         = fa_icon 'sort-amount-asc 3x', class: 'mb-3'
-        h3 Chronological Order
+        h3 Watch In Order
         p Watch Youtube playlists in order from oldest to newest, as it should be.
       .col-sm-4.mb-2
         = fa_icon 'arrows-alt 3x', class: 'mb-3'
@@ -28,7 +28,7 @@
       .col-sm-4.mb-2
         = fa_icon 'user-circle 3x', class: 'mb-3'
         h3 Watch Your Playlists
-        p Sign up to access your subscriptions and playlists from here.
+        p Connect your Youtube to access catch up on your subscriptions and playlists.
 
 .article.py-5.bg-light
   - if @current_playlists.present?
@@ -38,7 +38,7 @@
           h4.hr Recently Watched By You
       .row
         - @current_playlists.each do |p|
-          .col-4= render 'playlists/card', item: p
+          .col-6.col-sm-4= render 'playlists/card', item: p
         
   .container
     .row
@@ -46,4 +46,4 @@
         h4.hr Recently Watched By Others
     .row
       - @recent_playlists.each do |p|
-        .col-4= render 'playlists/card', item: p
+        .col-6.col-sm-4= render 'playlists/card', item: p

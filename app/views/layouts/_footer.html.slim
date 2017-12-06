@@ -2,5 +2,8 @@ footer.footer.bg-dark
   .container
     .row
       .col-lg.text-center.text-lg-left.mt-lg-3
+        = link_to 'About', about_path, class: 'mr-4 text-light'
+        = link_to 'Terms', terms_path, class: 'mr-4 text-light'
+        = link_to 'Privacy', privacy_path, class: 'mr-4 text-light'
       .col-lg.text-center.text-lg-right.mt-lg-3
         span.text-muted Copyright © #{Time.current.year} #{app_name}, All Rights Reserved
