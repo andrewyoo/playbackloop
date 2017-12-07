@@ -1,0 +1,9 @@
+- if playlists.present?
+  .article.py-4
+    .container-fluid
+      .row
+        .col
+          h4.hr= headline
+      .row
+        - playlists.each do |p|
+          .col-6.col-sm-4.col-lg-3.col-xl-2= render 'playlists/card', item: p

@@ -14,8 +14,8 @@ class Playlist
       list = service.list_playlist_items(list_playlist_items_parts, 
         playlist_id: playlist_id, 
         max_results: max_results, 
-        page_token: page_token, 
-        fields: list_playlist_items_fields)
+        page_token: page_token)
+        #fields: list_playlist_items_fields)
       @items += list.items
       @page_token = list.next_page_token
     end while page_token.present?
