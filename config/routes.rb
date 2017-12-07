@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   root to: 'pages#index'
-  resources :playlists, only: [:show, :create] do
+  resources :playlists, only: [:show] do
     member do
       get :items
     end
   end
+  resource :search, only: [:create]
   resources :channels, only: [:show]
   resource :account, only: [:show]
   

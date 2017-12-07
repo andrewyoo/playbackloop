@@ -10,21 +10,6 @@ class PlaylistsController < ApplicationController
     end
   end
   
-  def create
-    playlist_id = 
-      if params[:playlist_id].match('http')
-        url_params = Rack::Utils.parse_nested_query URI.parse(params[:playlist_id]).query
-        url_params['list']
-      else
-        params[:playlist_id].to_s.strip
-      end
-    if playlist_id
-      redirect_to playlist_path(id: playlist_id)
-    else
-      playlist_not_found
-    end
-  end
-  
   def items
     @playlist = Playlist.new(@ys, params[:id])
     @playlist.load_playlist
