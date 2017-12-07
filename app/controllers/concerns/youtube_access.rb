@@ -18,7 +18,7 @@ module YoutubeAccess
   end
   
   def recent_playlists
-    playlist_ids = View.playlist.group(:list_id).order('max(updated_at)').limit(6).pluck(:list_id)
+    playlist_ids = View.playlist.not_user(current_user).group(:list_id).order('max(updated_at) desc').limit(6).pluck(:list_id)
     youtube_playlist(playlist_ids)
   end
   
