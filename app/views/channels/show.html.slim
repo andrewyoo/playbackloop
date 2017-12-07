@@ -1,0 +1,10 @@
+- title "#{@snippet.title} | #{app_name}"
+
+.container-fluid.my-4
+  - if @playlists.present?
+    .row
+      .col
+        h4.hr Playlists on #{@snippet.title}
+    .row.mb-4
+      - @playlists.each do |p|
+        .col-6.col-sm-4.col-lg-3.col-xl-2= render 'playlists/card', item: p

@@ -1,0 +1,7 @@
+- snippet = item.snippet
+
+.channel-card.card.mb-2
+  a href=channel_path(id: snippet.resource_id.channel_id)
+    img.card-img-top.img-fluid src=snippet.thumbnails.high.url alt="#{snippet.title}"
+  .card-body
+    = snippet.title

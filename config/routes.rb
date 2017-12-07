@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       get :items
     end
   end
+  resources :channels, only: [:show]
+  resource :account, only: [:show]
   
   get 'about' => 'pages#about', as: :about
   get 'terms' => 'pages#terms', as: :terms

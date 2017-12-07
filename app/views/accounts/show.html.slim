@@ -1,0 +1,31 @@
+- title "My Account | #{app_name}"
+
+.article.py-4
+  .container-fluid
+    - if @current_playlists.present?
+      .row
+        .col
+          h4.hr Recently Watched
+      .row
+        - @current_playlists.each do |p|
+          .col-6.col-sm-4.col-lg-3.col-xl-2= render 'playlists/card', item: p
+      
+.article.py-4.bg-light
+  .container-fluid
+    - if @user_playlists.present?
+      .row
+        .col
+          h4.hr My Playlists
+      .row
+        - @user_playlists.each do |p|
+          .col-6.col-sm-4.col-lg-3.col-xl-2= render 'playlists/card', item: p
+
+.article.py-4
+  .container-fluid
+    - if @channel_subscriptions.present?
+      .row
+        .col
+          h4.hr My Subscriptions
+      .row
+        - @channel_subscriptions.each do |c|
+          .col-6.col-sm-4.col-lg-3.col-xl-2= render 'channels/card', item: c
