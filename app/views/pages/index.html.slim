@@ -30,20 +30,5 @@
         h3 Watch Your Playlists
         p Connect your Youtube to access catch up on your subscriptions and playlists.
 
-.article.py-5.bg-light
-  - if @current_playlists.present?
-    .container.mb-4
-      .row
-        .col
-          h4.hr Recently Watched By You
-      .row
-        - @current_playlists.each do |p|
-          .col-6.col-sm-4= render 'playlists/card', item: p
-        
-  .container
-    .row
-      .col
-        h4.hr Recently Watched By Others
-    .row
-      - @recent_playlists.each do |p|
-        .col-6.col-sm-4= render 'playlists/card', item: p
+= render 'playlists/list_cards', playlists: @current_playlists, headline: 'Recently Watched By You'
+= render 'playlists/list_cards', playlists: @recent_playlists, headline: 'Recently Watched By Others'

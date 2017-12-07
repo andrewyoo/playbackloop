@@ -1,3 +1,5 @@
+require 'google/apis/youtube_v3'
+
 module YoutubeAccess
   extend ActiveSupport::Concern
 
