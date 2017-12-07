@@ -5,11 +5,11 @@
     .row.text-center
       .col
         h1.h2 Watch Youtube Playlists in Chronological Order
-        = form_with url: playlists_path, local: true do
+        = form_with url: search_path, local: true do
           .row
             .offset-lg-3.col-lg-5.col-md-9.pr-md-0
               .form-group
-                = text_field_tag :playlist_id, nil, placeholder: 'Youtube Playlist ID or URL', class: 'form-control form-control-lg', required: true
+                = text_field_tag :query, nil, placeholder: 'Youtube Playlist or Channel URL', class: 'form-control form-control-lg', required: true
             .col-md-3.col-lg-1
               = button_tag class: 'btn btn-warning btn-lg text-white', data: { disable_with: '...' }, style: 'width: 100%', name: nil do
                 = fa_icon 'search'
