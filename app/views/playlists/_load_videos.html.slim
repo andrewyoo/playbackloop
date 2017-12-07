@@ -41,4 +41,4 @@ coffee:
 
   lastPlayedVid = ->
     cookie = Cookies.getJSON('playlists')
-    cookie[playlist_id][0] if cookie
+    cookie[playlist_id][0] if cookie && cookie[playlist_id]
