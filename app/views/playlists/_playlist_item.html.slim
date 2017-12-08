@@ -3,7 +3,7 @@
 - classes << 'active' if playlist_item == playing
 - data = { position: playlist_item_counter, vid: video_id }
 
-a href=url_for(anchor: video_id) data=data class=classes.join(' ')
+a href=url_for(anchor: video_id) data=data class=classes.join(' ') id="vid_#{video_id}"
   .infobar
     .thumb= image_tag playlist_item.snippet.thumbnails.medium.url
     .position.badge.badge-secondary
