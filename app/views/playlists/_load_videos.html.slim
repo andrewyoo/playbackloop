@@ -24,9 +24,11 @@ coffee:
     last_video = lastPlayedVid()
     if last_video
       position = playlist.positionByVid(last_video)
+      $('#playlist-wrapper').animate({ scrollTop: $("#vid_#{last_video}").offset().top - 60 }, 'slow')
     else
       position = 0
     playlist.playVideo(position)
+    
 
   onPlayerStateChange = (event) ->
     if event.data == -1 # unstarted / new vid
