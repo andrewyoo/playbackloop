@@ -18,12 +18,17 @@ module YoutubeAccess
   end
   
   def recent_playlists
-    playlist_ids = View.playlist.not_user(current_user).group(:list_id).order('max(updated_at) desc').limit(6).pluck(:list_id)
-    youtube_playlist(playlist_ids)
+    user_views = View.playlist.with_user(current_user).group(:list_id).order('max(updated_at) desc').limit(10).pluck(:list_id)
+    playlist_ids = (recent_playlists_cache - user_views - cookie_playlist_ids).slice(0, 10)
+    youtube_playlist(playlist_ids).slice(0, 6)
   end
   
   def current_playlists
-    playlist_ids = current_user.views.playlist.recently_played.limit(6).pluck(:list_id)
+    if current_user
+      playlist_ids = current_user.views.playlist.recently_played.limit(6).pluck(:list_id)
+    else
+      playlist_ids = cookie_playlist_ids
+    end
     youtube_playlist(playlist_ids)
   end
   
@@ -45,5 +50,10 @@ module YoutubeAccess
   
   def youtube_channel(channel_id)
     @ys.list_channels('snippet, content_details', id: channel_id).items.first
+  end
+  
+  def cookie_playlist_ids
+    cookie_views = JSON.parse(cookies[:playlists]) rescue {}
+    cookie_views.keys
   end
 end

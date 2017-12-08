@@ -27,4 +27,10 @@ class ApplicationController < ActionController::Base
     sync_to_db
     sync_to_cookies
   end
+  
+  def recent_playlists_cache
+    Rails.cache.fetch('recent_playlists') do
+      View.playlist.group(:list_id).order('max(updated_at) desc').limit(100).pluck(:list_id)
+    end
+  end
 end

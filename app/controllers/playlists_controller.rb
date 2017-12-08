@@ -1,4 +1,6 @@
 class PlaylistsController < ApplicationController
+  after_action :cache_playlists_views
+  
   def show
     @playlist = Playlist.new(@ys, params[:id])
     begin
@@ -23,5 +25,10 @@ class PlaylistsController < ApplicationController
   
   def playlist_not_found
     redirect_to root_path, alert: 'Could not find the Playlist'
+  end
+  
+  def cache_playlists_views
+    updated_playlists = recent_playlists_cache.unshift(params[:id]).uniq.slice(0,100)
+    Rails.cache.write('recent_playlists', updated_playlists)
   end
 end
