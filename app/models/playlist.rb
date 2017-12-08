@@ -29,6 +29,19 @@ class Playlist
     end
   end
   
+  def sorted_items(sort_order = :date_asc)
+    case sort_order.to_sym
+    when :date_asc
+      items.sort { |x,y| x.content_details.video_published_at <=> y.content_details.video_published_at }
+    when :date_desc
+      items.sort { |x,y| y.content_details.video_published_at <=> x.content_details.video_published_at }
+    when :position_desc
+      items.reverse
+    else # :position_asc
+      items
+    end
+  end
+  
   private
   
   def list_playlist_items_parts

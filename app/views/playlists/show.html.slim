@@ -4,6 +4,8 @@
 .container-fluid
   .row
     #now-playing.col-md-7.mt-2
+      #sort-menu.float-right
+        = select_tag :sort_order, sort_order_options(@sort_order), id: 'sort-menu-select', data: { playlist_id: params[:id] }
       h1.h5.playlist-title alt=@playlist_info.description
         = @playlist_info.title
         em.small
@@ -22,5 +24,5 @@
       - content_for :inline_js
         javascript:
           $(function() {
-            $("#playlist-items").load("#{items_playlist_path(id: @playlist.playlist_id)}");
+            $("#playlist-items").load("#{items_playlist_path(id: @playlist.playlist_id, sort: @sort_order)}");
           });

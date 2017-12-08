@@ -1,4 +1,5 @@
 class PlaylistsController < ApplicationController
+  before_action :set_sort_order
   after_action :cache_playlists_views
   
   def show
@@ -15,10 +16,8 @@ class PlaylistsController < ApplicationController
   def items
     @playlist = Playlist.new(@ys, params[:id])
     @playlist.load_playlist
-    items = @playlist.items
-    items.sort! { |x,y| x.content_details.video_published_at <=> y.content_details.video_published_at }
-    playing = items.first
-    render 'playlists/_playlist', locals: { items: items, playing: playing }, layout: false
+    items = @playlist.sorted_items(@sort_order)
+    render 'playlists/_playlist', locals: { items: items, playing: items.first }, layout: false
   end
   
   private
@@ -30,5 +29,17 @@ class PlaylistsController < ApplicationController
   def cache_playlists_views
     updated_playlists = recent_playlists_cache.unshift(params[:id]).uniq.slice(0,100)
     Rails.cache.write('recent_playlists', updated_playlists)
+  end
+  
+  def set_sort_order
+    @sort_order = params[:sort] || last_view_sort || cookie_sort || :date_asc
+  end
+  
+  def last_view_sort
+    current_user.views.playlist.where(list_id: params[:id]).first.try(:sort_order) if current_user
+  end
+  
+  def cookie_sort
+    cookie_playlist_views[params[:id]].try(:last)
   end
 end

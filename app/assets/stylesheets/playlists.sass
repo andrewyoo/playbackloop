@@ -1,15 +1,20 @@
 .playlist-item
   position: relative
-  padding-left: 100px
-  min-height: 85px
+  padding-left: 120px
   .infobar
     position: absolute
     left: 10px
   .thumb
     img
-      width: 80px
+      width: 100px
   .published_at
     font-style: italic
+  .position
+    bottom: 0.1rem
+    right: 0.1rem
+    opacity: 0.8
+    font-size: 0.7rem
+    position: absolute
 
 @include media-breakpoint-up(md)
   #playlist-wrapper

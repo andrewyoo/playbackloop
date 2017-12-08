@@ -1,6 +1,7 @@
 javascript:
-  payload = #{raw items.map(&:to_json)}
-  playlist_id = '#{@playlist.playlist_id}'
+  payload = #{raw items.map(&:to_json)};
+  playlist_id = '#{@playlist.playlist_id}';
+  sort_order = '#{@sort_order}';
 
 coffee:
   # async load iframe api
@@ -35,10 +36,10 @@ coffee:
 
   updateCookie = (video_id) ->
     h = {}
-    h[playlist_id] = [video_id, 'date_asc']
+    h[playlist_id] = [video_id, sort_order]
     cookie = Cookies.getJSON('playlists')
     Cookies.set('playlists', $.extend(cookie, h))
 
   lastPlayedVid = ->
     cookie = Cookies.getJSON('playlists')
-    cookie[playlist_id][0] if cookie && cookie[playlist_id]
+    cookie[playlist_id][0] if cookie && cookie[playlist_id] && (cookie[playlist_id][1] == sort_order)
