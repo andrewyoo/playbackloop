@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     views = current_user.views.playlist.recently_played.limit(50)
     list = {}
     views.each { |v| list[v.list_id] = [v.video_id, v.sort_order] }
-    cookies[:playlists] = list.to_json
+    cookies[:playlists] = { value: list.to_json, expires: 365.days.from_now }
   end
   
   def sync_to_db
