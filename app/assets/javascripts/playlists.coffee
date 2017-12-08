@@ -26,3 +26,7 @@ $(document).on 'click', '.playlist-item', (e) =>
   e.preventDefault()
   position = $(e.currentTarget).data('position')
   playlist.playVideo(position)
+
+$(document).on 'change', '#sort-menu-select', (e) =>
+  select = $(e.currentTarget)
+  document.location.href = "/playlists/#{select.data('playlist-id')}?sort=#{select.val()}" 

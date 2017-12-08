@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
   end
   
   def sync_to_db
-    views = JSON.parse(cookies[:playlists]) rescue {}
-    views.each do |k,v|
+    cookie_playlist_views.each do |k,v|
       view = current_user.views.playlist.where(list_id: k).first_or_create
       video_id, sort_order = v
       view.update(video_id: video_id, sort_order: sort_order)
@@ -32,5 +31,9 @@ class ApplicationController < ActionController::Base
     Rails.cache.fetch('recent_playlists') do
       View.playlist.group(:list_id).order('max(updated_at) desc').limit(100).pluck(:list_id)
     end
+  end
+  
+  def cookie_playlist_views
+    JSON.parse(cookies[:playlists]) rescue {}
   end
 end
