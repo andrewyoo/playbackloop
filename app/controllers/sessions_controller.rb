@@ -11,6 +11,7 @@ rescue_from OmniAuth::Strategies::OAuth2::CallbackError, with: :access_denied
   
   def destroy
     self.current_user = nil
+    cookies.delete :playlists
     redirect_to root_path
   end
 
