@@ -1,7 +1,8 @@
 - snippet = item.snippet
+- thumbnail_url = (snippet.thumbnails.high || snippet.thumbnails.standard).try(:url)
 
 .channel-card.card.mb-2
   a href=channel_path(id: snippet.resource_id.channel_id)
-    img.card-img-top.img-fluid src=snippet.thumbnails.high.url alt="#{snippet.title}"
+    img.card-img-top.img-fluid src=thumbnail_url alt="#{snippet.title}"
   .card-body
     = snippet.title
