@@ -21,6 +21,12 @@ class window.Playlist
     $('#now-playing .description pre').html(description)
   positionByVid: (video_id) ->
     $(".playlist-item[data-vid='#{video_id}']").data('position')
+  updatePosition: (video_id) ->
+    $.ajax(
+      type: "PATCH"
+      url: "/playlists/#{playlist_id}"
+      data: { video_id: video_id, sort_order: sort_order }
+    )
   
 $(document).on 'click', '.playlist-item', (e) =>
   e.preventDefault()
