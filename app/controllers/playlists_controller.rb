@@ -1,5 +1,6 @@
 class PlaylistsController < ApplicationController
-  before_action :set_sort_order
+  before_action :sync_to_cookies, only: :show
+  before_action :set_sort_order, only: :items
   after_action :cache_playlists_views
   
   def show
@@ -11,6 +12,13 @@ class PlaylistsController < ApplicationController
     rescue Exception => e
       return playlist_not_found 
     end
+  end
+  
+  def update
+    return unless current_user
+    view = current_user.views.playlist.where(list_id: params[:id]).first_or_create
+    view.update(video_id: params[:video_id], sort_order: params[:sort_order])
+    head :ok
   end
   
   def items

@@ -35,6 +35,7 @@ coffee:
       video_id = player.getVideoData().video_id
       playlist.setPosition(video_id)
       updateCookie(video_id)
+      playlist.updatePosition(video_id)
 
   updateCookie = (video_id) ->
     h = {}
