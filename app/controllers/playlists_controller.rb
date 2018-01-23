@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :sync_to_cookies, only: :show
-  before_action :set_sort_order, only: :items
+  before_action :set_sort_order, only: [:show, :items]
   after_action :cache_playlists_views
   
   def show
