@@ -1,0 +1,12 @@
+machine:
+  timezone: America/New_York
+  ruby:
+    version: 2.3.6
+dependencies:
+  pre:
+    - gem install bundler --pre
+deployment:
+  production:
+    branch: master
+    commands:
+      - ./bin/deploy production
