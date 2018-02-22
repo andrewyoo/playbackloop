@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+require File.expand_path('../config/environment', File.dirname(__FILE__))
+
+# This class will deploy a given opsworks stack
+# The `stack` argument should be a stack name corresponding to a config hash in `config/secrets.yml`
+# This script is used to deploy branches once a build is green in circleCI
+# e.g. ./bin/deploy staging_duncan
+class Deployment
+  attr_reader :stack, :stack_id, :app_id
+
+  def initialize(stack)
+    @stack = stack
+    config = Rails.application.secrets.opsworks.with_indifferent_access[stack] || {}
+    @stack_id, @app_id = config.values_at('stack_id', 'app_id')
+  end
+
+  def deploy!
+    return fatal! unless stack_id.present? && app_id.present?
+    # return puts "Automatically deployed branch #{stack}"
+    res = client.create_deployment(
+      stack_id: stack_id,
+      app_id: app_id,
+      command: {
+        name: "deploy",
+        args: {
+          "migrate" => ["true"],
+        },
+      },
+      comment: "Automatically deployed branch #{stack}",
+    )
+    success!(res)
+  end
+
+  private
+
+  def client
+    @client ||= Aws::OpsWorks::Client.new(region: 'us-east-1')
+  end
+
+  def success!(res)
+    return unless res.successful?
+    puts "-: #{stack} :-  Deployment scheduled: #{res.deployment_id}"
+  end
+
+  def fatal!
+    puts "-: #{stack} :-  No such stack. Please check the configuration in `config/secrets.yml`"
+  end
+end
+
+# Use first argument, or circle branch, or current branch as stack name
+# We could have made this a little cleaner if we named our deployment for production `master` instead
+stack = ARGV[0] || ENV['CIRCLE_BRANCH'] || `git symbolic-ref HEAD --short`.chomp
+
+deployment = Deployment.new(stack)
+deployment.deploy!

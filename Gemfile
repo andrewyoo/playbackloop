@@ -33,6 +33,9 @@ gem 'omniauth-google-oauth2'
 gem 'exception_notification', ">= 4.2.0"
 gem 'aws-ses', '~> 0.6.0', require: 'aws/ses'
 
+# deployment
+gem 'aws-sdk-opsworks'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
