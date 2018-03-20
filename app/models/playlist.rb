@@ -1,6 +1,8 @@
 class Playlist
   attr_accessor :service, :playlist_id, :items, :max_results, :page_token, :title, :total
   
+  MAX_LOAD = 2000
+
   def initialize(service, playlist_id)  
     @service = service
     @playlist_id = playlist_id
@@ -18,7 +20,7 @@ class Playlist
         #fields: list_playlist_items_fields)
       @items += list.items
       @page_token = list.next_page_token
-    end while page_token.present?
+    end while page_token.present? && @items.count < MAX_LOAD
     @items.reject! { |i| i.content_details.video_published_at.nil? }
   end
   
