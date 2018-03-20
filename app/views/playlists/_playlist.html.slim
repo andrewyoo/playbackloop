@@ -1,3 +1,5 @@
 = render 'load_videos', items: items
+- if items.count >= Playlist::MAX_LOAD
+  .alert.alert-warning This playlist is huge and only the latest #{Playlist::MAX_LOAD} videos were loaded.
 .list-group
   = render partial: 'playlist_item', collection: items, locals: { total_count: items.count, playing: playing }
