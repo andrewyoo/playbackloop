@@ -5,7 +5,8 @@
 
 a href=url_for(anchor: video_id) data=data class=classes.join(' ') id="vid_#{video_id}"
   .infobar
-    .thumb= image_tag playlist_item.snippet.thumbnails.medium.url
+    .thumb
+      img data-src=playlist_item.snippet.thumbnails.medium.url alt='thumb' width='100' height='56'
     .position.badge.badge-secondary
       | #{playlist_item.snippet.position + 1} / #{total_count}
   .title
