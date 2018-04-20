@@ -1,1 +1,6 @@
+user-Agent: *
+disallow: /search
+disallow: /auth
+disallow: /playlist/*/items
+
 Sitemap: http://www.playbackloop.com/sitemap.xml
