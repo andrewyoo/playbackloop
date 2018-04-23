@@ -1,4 +1,5 @@
 Playbackloop::Application.config.middleware.use ExceptionNotification::Rack,
+  ignore_exceptions: [ActionController::InvalidAuthenticityToken] + ExceptionNotifier.ignored_exceptions,
   email: {
     email_prefix: "[#{APP_NAME}][#{Rails.env}] ",
     sender_address:  "PBL Exceptions <#{Rails.application.secrets.sender_email}>",
