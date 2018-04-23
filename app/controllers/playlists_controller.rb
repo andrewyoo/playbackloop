@@ -19,8 +19,6 @@ class PlaylistsController < ApplicationController
     view = current_user.views.playlist.where(list_id: params[:id]).first_or_create
     view.update(video_id: params[:video_id], sort_order: params[:sort_order])
     head :ok
-  rescue ActionController::InvalidAuthenticityToken => e
-    head :ok
   end
   
   def items
