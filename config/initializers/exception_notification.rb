@@ -1,3 +1,6 @@
+# need to touch ActionController::Base before ActionController::InvalidAuthenticityToken can be accessed
+ActionController::Base
+
 Playbackloop::Application.config.middleware.use ExceptionNotification::Rack,
   ignore_exceptions: [ActionController::InvalidAuthenticityToken] + ExceptionNotifier.ignored_exceptions,
   email: {
