@@ -4,6 +4,9 @@
 .container-fluid
   .row
     #now-playing.col-md-7.mt-2
+      .df.py-1.pr-2.mb-2 style='background-color: #f6e8cd; border-radius: 5px; padding-left: 36px; position: relative'
+        = image_tag 'dishfile_32.png', style: 'width: 20px; height: 20px; position: absolute; left: 8px; top: 6px', class: 'mr-2'
+        | In NYC? Check out my other project #{link_to 'Dishfile', 'https://www.dishfile.com', target: '_blank'} to find popular dishes by hashtags!
       #sort-menu.float-right
         = select_tag :sort_order, sort_order_options(@sort_order), id: 'sort-menu-select', data: { playlist_id: params[:id] }
       h1.h5.playlist-title alt=@playlist_info.description
