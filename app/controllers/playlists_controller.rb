@@ -23,7 +23,13 @@ class PlaylistsController < ApplicationController
   
   def items
     @playlist = Playlist.new(@ys, params[:id])
-    @playlist.load_playlist
+    begin
+      @playlist.load_playlist
+    rescue Google::Apis::ClientError => e
+      return playlist_not_found
+    rescue Exception => e
+      return playlist_not_found
+    end
     items = @playlist.sorted_items(@sort_order)
     render 'playlists/_playlist', locals: { items: items, playing: items.first }, layout: false
   end
