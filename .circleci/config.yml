@@ -42,8 +42,9 @@ jobs:
       - run: bundle exec rake test
 
   deploy:
+    working_directory: ~/playbackloop
     docker:
-      - image: circleci/ruby:2.3.7-jessie
+      - image: circleci/python:2.7-jessie
     steps:
       - run:
           name: Install awscli
