@@ -31,6 +31,7 @@ class Playlist
     end
   end
   
+  # need to create a Playlist::Sort class
   def sorted_items(sort_order = :date_asc)
     case sort_order.to_sym
     when :date_asc
@@ -39,6 +40,8 @@ class Playlist
       items.sort { |x,y| y.content_details.video_published_at <=> x.content_details.video_published_at }
     when :position_desc
       items.reverse
+    when :title
+      items.sort { |x,y| x.snippet.title <=> y.snippet.title }
     else # :position_asc
       items
     end

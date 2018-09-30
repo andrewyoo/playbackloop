@@ -3,7 +3,8 @@ module PlaylistsHelper
     options = [
       ['Oldest First', :date_asc],
       ['Newest First', :date_desc],
-      ['Playlist Order', :position_asc]
+      ['Playlist Order', :position_asc],
+      ['Title', :title]
     ]
     options_for_select(options, active)
   end
