@@ -1,4 +1,5 @@
 .playlist-item
+  background-color: #efefef
   position: relative
   padding-left: 120px
   .infobar
@@ -19,7 +20,7 @@
 @include media-breakpoint-up(md)
   #playlist-wrapper
     overflow-y: scroll
-    max-height: calc(100vh - #{$header-height} - #{$footer-height})
+    max-height: calc(100vh - #{$header-height})
 
 .playlist-card, .channel-card
   margin-left: -10px
