@@ -2,6 +2,12 @@ class window.Playlist
   constructor: ({ @items }) ->
   videoIds: -> 
     @items.map (video) -> video.contentDetails.videoId
+  playableIds: (filter) ->
+    if filter
+      this.videoIds()
+    else
+      this.videoIds()
+    @items.map (video) -> video.contentDetails.videoId
   videoIdsAfterPosition: (position) ->
     this.videoIds().slice(position)
   playVideo: (position) ->
