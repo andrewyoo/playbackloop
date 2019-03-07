@@ -1,9 +1,10 @@
 class window.Playlist
+  MAX_VIDEO_IDS = 500
   constructor: ({ @items }) ->
   videoIds: -> 
     @items.map (video) -> video.contentDetails.videoId
   videoIdsAfterPosition: (position) ->
-    this.videoIds().slice(position)
+    this.videoIds().slice(position, position + MAX_VIDEO_IDS)
   playVideo: (position) ->
     player.loadPlaylist(this.videoIdsAfterPosition(position))
     $('html, body').animate({ scrollTop: 0 }, 'slow')
