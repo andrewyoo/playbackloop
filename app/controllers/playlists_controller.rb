@@ -17,7 +17,7 @@ class PlaylistsController < ApplicationController
   def update
     return unless current_user
     view = current_user.views.playlist.where(list_id: params[:id]).first_or_create
-    view.update(video_id: params[:video_id], sort_order: params[:sort_order])
+    view.update(video_id: params[:video_id], sort_order: params[:sort_order], deleted_at: nil)
     head :ok
   end
   

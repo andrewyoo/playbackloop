@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   
   def recent_playlists_cache
     Rails.cache.fetch('recent_playlists') do
-      View.playlist.group(:list_id).order('max(updated_at) desc').limit(100).pluck(:list_id)
+      View.playlist.not_deleted.group(:list_id).order('max(updated_at) desc').limit(100).pluck(:list_id)
     end
   end
   
