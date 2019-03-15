@@ -30,5 +30,5 @@
         h3 Watch Your Playlists
         p Connect your Youtube to access catch up on your subscriptions and playlists.
 
-= render 'playlists/list_cards', playlists: @current_playlists, headline: 'Recently Watched By You'
+= render 'playlists/list_cards', playlists: @current_playlists, headline: 'Recently Watched By You', removable: true
 = render 'playlists/list_cards', playlists: @recent_playlists, headline: 'Recently Watched By Others'

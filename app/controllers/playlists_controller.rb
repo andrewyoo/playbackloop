@@ -34,6 +34,15 @@ class PlaylistsController < ApplicationController
     render 'playlists/_playlist', locals: { items: items, playing: items.first }, layout: false
   end
   
+  def destroy
+    return unless current_user
+    @view = current_user.views.playlist.find_by_list_id params[:id]
+    if @view
+      @view.deleted_at ||= Time.current
+      @view.save
+    end
+  end
+  
   private
   
   def playlist_not_found

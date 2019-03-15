@@ -1,0 +1,7 @@
+// hide item
+$(".playlist-card#pid-<%= params[:id] %>").parent().slideToggle();
+
+// remove from cookie
+cookie = Cookies.getJSON('playlists');
+delete cookie['<%= params[:id] %>'];
+Cookies.set('playlists', cookie, { expires: 365 });
