@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'pages#index'
-  resources :playlists, only: [:show, :update] do
+  resources :playlists, only: [:show, :update, :destroy] do
     member do
       get :items
     end

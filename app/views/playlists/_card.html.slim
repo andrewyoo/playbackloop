@@ -1,7 +1,11 @@
 - snippet = item.snippet
 - thumbnail_url = (snippet.thumbnails.high || snippet.thumbnails.standard).try(:url)
+- removable ||= false
 
-.playlist-card.card.mb-2
+.playlist-card.card.mb-2 id=("pid-#{item.id}")
+  - if removable
+    = link_to playlist_path(id: item.id), class: 'remove badge badge-dark', method: :delete, remote: true do
+      = fa_icon 'trash'
   a href=playlist_path(id: item.id)
     img.card-img-top.img-fluid src=thumbnail_url alt="#{snippet.title} by #{snippet.channel_title}"
     .count.badge.badge-light alt="#{pluralize item.content_details.item_count, 'Video'}"
