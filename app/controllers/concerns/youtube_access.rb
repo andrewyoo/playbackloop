@@ -18,7 +18,7 @@ module YoutubeAccess
   end
   
   def recent_playlists
-    user_views = View.playlist.with_user(current_user).group(:list_id).order('max(updated_at) desc').limit(10).pluck(:list_id)
+    user_views = View.playlist.not_deleted.with_user(current_user).group(:list_id).order('max(updated_at) desc').limit(10).pluck(:list_id)
     playlist_ids = (recent_playlists_cache - user_views - cookie_playlist_ids).slice(0, 10)
     youtube_playlist(playlist_ids).slice(0, 6)
   end
