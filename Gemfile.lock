@@ -169,7 +169,7 @@ GEM
     pg (0.21.0)
     popper_js (1.12.9)
     public_suffix (3.0.2)
-    puma (3.11.4)
+    puma (3.12.1)
     rack (2.0.4)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
@@ -305,7 +305,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.3.7p456
+   ruby 2.6.2p47
 
 BUNDLED WITH
-   1.16.5
+   1.17.2

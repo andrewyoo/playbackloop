@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: playbackloop_production
-  username: playbackloop
-  password: <%= ENV['PLAYBACKLOOP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
