@@ -1,5 +1,8 @@
 class BlogsController < ApplicationController
+  def index
+  end
+  
   def show
-    render 'how-to-watch-youtube-playlists-in-chronological-order'
+    render params[:slug] 
   end
 end

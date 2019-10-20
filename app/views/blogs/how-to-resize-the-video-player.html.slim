@@ -1,0 +1,24 @@
+- title params[:slug].titleize
+
+.hero style="background-image: url(#{image_url 'resizing.jpg'}); background-position: center 80%;"
+  .container.text-center.text-white
+    .row  
+      .col
+        h1.bg-opacity= params[:slug].titleize
+
+.container.blog
+  .row.my-4
+    .col.offset-lg-2.col-lg-8
+      p 
+        | When I am working on my computer sometimes I like to stream youtube in the background because i just can't stand having a moment without distraction.
+
+      p 
+        | On my Macbook using the Safari browser there is a secret picture in picture mode which can be activated if you double right click on a embeded video.  Check out my gif:
+      p.my-4.text-center= image_tag 'how_to_pip.gif', width: '600px'
+
+      p 
+        | On other browsers you can just pop out the tab and resize that tab to how small or big you want it.  Use the theater button mode to go full width and resize to your heart's content.
+      p.my-4.text-center= image_tag 'theater_button.jpg'
+
+      p.lead
+      | - Andrew

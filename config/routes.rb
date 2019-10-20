@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :channels, only: [:show]
   resource :account, only: [:show]
   
+  get 'blog' => 'blogs#index', as: :blogs
   get 'blog/:slug' => 'blogs#show', as: :blog
   get 'about' => 'pages#about', as: :about
   get 'terms' => 'pages#terms', as: :terms
