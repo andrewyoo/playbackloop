@@ -18,9 +18,14 @@
     position: absolute
 
 @include media-breakpoint-up(md)
-  #playlist-wrapper
-    overflow-y: scroll
-    max-height: calc(100vh - #{$header-height})
+  #playlist-player
+    #playlist-wrapper
+      overflow-y: scroll
+      max-height: calc(100vh - #{$header-height})
+    &.large-mode
+      #playlist-wrapper
+        overflow-y: auto
+        max-height: none
 
 .playlist-card, .channel-card
   margin-left: -10px
