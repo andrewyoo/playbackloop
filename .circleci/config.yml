@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/playbackloop
   docker:
-    - image: circleci/ruby:2.3.7-jessie
+    - image: circleci/ruby:2.3.7
       environment:
         PGHOST: localhost
         PGUSER: playbackloop
@@ -47,7 +47,8 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-      - run: sudo apt-get install python-pip python-dev build-essential 
+      - run: sudo apt-get update
+      - run: sudo apt-get install build-essential python-dev python-pip
       - run: sudo pip install awscli
       - checkout
       - *cache_restore
