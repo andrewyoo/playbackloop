@@ -10,7 +10,7 @@ class Deployment
 
   def initialize(stack)
     @stack = stack
-    config = Rails.application.secrets.opsworks.with_indifferent_access[stack] || {}
+    config = Rails.application.credentials.opsworks.with_indifferent_access[stack] || {}
     @stack_id, @app_id = config.values_at('stack_id', 'app_id')
   end
 

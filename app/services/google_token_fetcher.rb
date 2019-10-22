@@ -21,8 +21,8 @@ class GoogleTokenFetcher
   def params
     { 
       refresh_token: user.refresh_token,
-      client_id: Rails.application.secrets.google[:client_id],
-      client_secret: Rails.application.secrets.google[:secret],
+      client_id: Rails.application.credentials[Rails.env.to_sym][:google][:client_id],
+      client_secret: Rails.application.credentials[Rails.env.to_sym][:google][:secret],
       grant_type: 'refresh_token'
     }
   end
