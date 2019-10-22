@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
   
   private
   
+  # over 36 caused some 502 error after upgrading to rails 5.2 in production even though cookie was well under 4k
   def sync_to_cookies
     return unless current_user
-    views = current_user.views.playlist.recently_played.limit(50)
+    views = current_user.views.playlist.recently_played.limit(30)
     list = {}
     views.each { |v| list[v.list_id] = [v.video_id, v.sort_order] }
     cookies[:playlists] = { value: list.to_json, expires: 365.days.from_now }
