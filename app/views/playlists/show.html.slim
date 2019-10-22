@@ -15,7 +15,7 @@
         #sort-menu
           = select_tag :sort_order, sort_order_options(@sort_order), id: 'sort-menu-select', data: { playlist_id: params[:id] }
         #view-mode.d-none.d-md-inline-block
-          button#view-mode-toggle.badge-pill.badge-dark title='Theater Mode'
+          button#view-mode-toggle.btn.btn-tiny.btn-dark title='Theater Mode'
             = fa_icon 'arrows-h'
       h1.h5.playlist-title alt=@playlist_info.description
         = @playlist_info.title
