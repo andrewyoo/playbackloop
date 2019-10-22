@@ -1,4 +1,4 @@
-secrets = Rails.application.secrets
+creds = Rails.application.credentials[Rails.env.to_sym]
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_oauth2, secrets.google[:client_id], secrets.google[:secret], scope: 'profile,email,youtube.readonly'
+  provider :google_oauth2, creds[:google][:client_id], creds[:google][:secret], scope: 'profile,email,youtube.readonly'
 end

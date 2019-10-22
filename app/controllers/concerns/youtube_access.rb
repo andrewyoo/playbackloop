@@ -1,5 +1,3 @@
-require 'google/apis/youtube_v3'
-
 module YoutubeAccess
   extend ActiveSupport::Concern
 
@@ -9,7 +7,7 @@ module YoutubeAccess
 
   def setup_youtube_service
     @ys = Google::Apis::YoutubeV3::YouTubeService.new
-    @ys.key = Rails.application.secrets.google[:api_key]
+    @ys.key = Rails.application.credentials[Rails.env.to_sym][:google][:api_key]
     if current_user
       @ys.authorization = Rails.cache.fetch(current_user.token_cache_key, expires_in: 59.minutes) do
         GoogleTokenFetcher.new(current_user).fetch
