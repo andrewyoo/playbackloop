@@ -1,0 +1,23 @@
+- title params[:slug].titleize
+
+.hero style="background-image: url(#{image_url 'blog/dark-bg.png'}); background-position: center 50%;"
+  .container.text-center.text-white
+    .row  
+      .col
+        h1.bg-opacity= params[:slug].titleize
+
+.container.blog
+  .row.my-4
+    .col.offset-lg-2.col-lg-8
+      p 
+        | I love watching stuff as I go to sleep as does a lot of people.  It makes me feel as if i'm not alone in this cold dark world. ^_^ 
+        
+      p
+        | Well it did and even though i'm not alone any more, i still like the comfort of hearing stuff as i go to sleep.  Also a guy named Dean emailed me and asked for a dark mode feature.
+
+      p 
+        | So introducting Dark Mode for PBL!
+      p.my-4.text-center= image_tag 'blog/dark-mode.jpg'
+
+      p.lead
+      | - Andrew

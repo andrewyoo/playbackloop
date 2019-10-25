@@ -1,0 +1,26 @@
+.shield
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: #000
+  opacity: 0.3
+
+body
+  &.dark-mode
+    color: #aaa
+    background-color: #000
+    pre
+      color: inherit
+    .playlist-item
+      color: #aaa
+      background-color: #010101
+      &.active
+        color: #ccc
+      .thumb::after
+        @extend .shield
+    #play-actions
+      select
+        background-color: #bbb
