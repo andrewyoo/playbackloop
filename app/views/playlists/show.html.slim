@@ -11,24 +11,32 @@
           .df.py-1.pr-2.mb-2 style='background-color: #f6e8cd; border-radius: 5px; padding-left: 36px; position: relative'
             = image_tag 'dishfile_32.png', style: 'width: 20px; height: 20px; position: absolute; left: 8px; top: 6px', class: 'mr-2'
             | In NYC? Check out my other project #{link_to 'Dishfile', 'https://www.dishfile.com', target: '_blank'} to find popular dishes by hashtags!
-      #play-actions.float-right
-        #sort-menu
-          = select_tag :sort_order, sort_order_options(@sort_order), id: 'sort-menu-select', data: { playlist_id: params[:id] }
-        #view-mode.d-none.d-md-inline-block
-          button#view-mode-toggle.btn.btn-tiny.btn-dark title='Theater Mode'
-            = fa_icon 'arrows-h'
-      h1.h5.playlist-title alt=@playlist_info.description
-        = @playlist_info.title
-        em.small
-          |  by 
-          = link_to @playlist_info.channel_title, "https://www.youtube.com/channel/#{@playlist_info.channel_id}", target: '_blank'
+      
+      .row
+        .col
+          h1.h5.playlist-title alt=@playlist_info.description
+            = @playlist_info.title
+            em.small
+              |  by 
+              = link_to @playlist_info.channel_title, "https://www.youtube.com/channel/#{@playlist_info.channel_id}", target: '_blank'
+          
+        .col-md-auto.mb-2
+          #play-actions.float-right
+            #sort-menu
+              = select_tag :sort_order, sort_order_options(@sort_order), id: 'sort-menu-select', data: { playlist_id: params[:id] }
+            #view-mode.d-none.d-md-inline-block
+              button#view-mode-toggle.btn.btn-tiny.btn-dark title='Theater Mode'
+                = fa_icon 'arrows-h'
+            #dark-mode
+              button#dark-mode-toggle.btn.btn-tiny.btn-secondary title='Dark Mode'
+                = fa_icon 'adjust'
       .player-wrapper
         iframe#player allowfullscreen='1' type="text/html" width="640" height="390" src==("https://www.youtube.com/embed/xxxxx?enablejsapi=1&origin=#{CGI.escape(root_url.chomp('/'))}&rel=0") frameborder="0"
       h5.title.mt-2.mb-0
       hr.mt-0
       .description
         pre
-    #playlist-wrapper.col-md-5
+    #playlist-wrapper
       #playlist-items
         .text-center.pt-4
           = fa_icon 'circle-o-notch spin 3x'
