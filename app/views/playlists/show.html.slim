@@ -30,6 +30,18 @@
             #dark-mode
               button#dark-mode-toggle.btn.btn-tiny.btn-secondary title='Dark Mode'
                 = fa_icon 'adjust'
+            #sleep-timer
+              #sleep-timer-dropdown.dropdown
+                button#sleep-timer-button.btn.btn-dark.btn-tiny.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  = fa_icon 'hourglass-half'
+                .dropdown-menu.dropdown-menu-right aria-labelledby="dropdownMenuButton" style="min-width: auto;"
+                  a.dropdown-item.stop-timer href='#' data-value=0 style='display: none' Stop
+                  - if Rails.env.development?
+                    a.dropdown-item href='#' data-value=5 5 seconds
+                  - sleep_timer_options.each do |text, secs|
+                    a.dropdown-item href='#' data-value=secs
+                      = text
+                  
       .player-wrapper
         iframe#player allowfullscreen='1' type="text/html" width="640" height="390" src==("https://www.youtube.com/embed/xxxxx?enablejsapi=1&origin=#{CGI.escape(root_url.chomp('/'))}&rel=0") frameborder="0"
       h5.title.mt-2.mb-0
