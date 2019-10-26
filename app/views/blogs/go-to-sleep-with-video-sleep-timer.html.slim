@@ -1,0 +1,23 @@
+- title params[:slug].titleize
+
+.hero style="background-image: url(#{image_url 'blog/sleep-bg.jpg'}); background-position: center 60%;"
+  .container.text-center.text-white
+    .row  
+      .col
+        h1.bg-opacity= params[:slug].titleize
+
+.container.blog
+  .row.my-4
+    .col.offset-lg-2.col-lg-8
+      p 
+        | I just added 
+        = link_to 'Dark Mode', blog_path(slug: 'watch-videos-in-dark-mode')
+        |  for PBLers watching in the dark.  To complement this i've added the beloved sleep timer button.  
+      
+      p.my-4.text-center= image_tag 'blog/sleep-timer.jpg'
+        
+      p
+        | PBL queues upto 50 videos when you play a playlist, but that could mean hours of playback.  Now with the sleep timer you can set a time limit and it will pause the playlist when the timer ends
+
+      p.lead
+      | - Andrew

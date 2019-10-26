@@ -15,5 +15,6 @@
 //= require bootstrap-sprockets
 //= require lazyload.min
 //= require js.cookie
+//= require timer
 //= require local-time
 //= require_tree .
