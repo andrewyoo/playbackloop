@@ -1,0 +1,33 @@
+- title params[:slug].titleize
+
+.hero style="background-image: url(#{image_url 'blog/bibi_bg.jpg'}); background-position: center 30%;"
+  .container.text-center.text-white
+    .row  
+      .col
+        h1.bg-opacity= params[:slug].titleize
+
+.container.blog
+  .row.my-4
+    .col.offset-lg-2.col-lg-8
+      p 
+        | I created PlaybackLoop in 2017 to watch youtube videos in order by date.  I found it moderately useful so I decided to buy a domain and create a public website for the world.  It did what i wanted which was to watch videos in chronological order and i continue to use it to this day. 
+        
+      p
+        | Well apparently i'm not the only one who uses this site anymore.  On 09/01/2019 PBL crashed from overloading my little hobbyist server and i didn't even know about it until I got a few helpful emails from some users.  In the last 30 days, PBL has had over 7000 visitors from over 100 countries!  Not much when compared to major websites, but it's nice to see others finding PBL useful.
+        
+      p.my-4.text-center= image_tag 'blog/pbl_users.png'
+      
+      p
+        | So I took some time to optimize the site and added some long awaited features to the site like better resizing, dark mode, and sleep timer.  I like tinkering on this site, but the server costs are real costs for me.  It costs me about $60/mo to run this site.  I could cut down the architecture to get this cheaper, but for me building out the architecture is part of the fun in addition to cutting costs!
+
+      p 
+        | So anyway, I thought I'd put up this donation widget.  The jokes are brought to you by 
+        = link_to 'icanhazdadjoke.com', 'https://icanhazdadjoke.com/'
+        | . I don't know if anyone out there but I intend to keep this site up as long as I can.  And hopefully get inspired to build a few new features down the road!
+      
+      p.my-4.text-center= image_tag 'venmo_me3.png'
+
+      p
+        | Cheers!
+      p.lead
+        | Andrew

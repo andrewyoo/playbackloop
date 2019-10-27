@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   get 'blog' => 'blogs#index', as: :blogs
   get 'blog/:slug' => 'blogs#show', as: :blog
+  get 'joke' => 'pages#joke', as: :joke
   get 'about' => 'pages#about', as: :about
   get 'terms' => 'pages#terms', as: :terms
   get 'privacy' => 'pages#privacy', as: :privacy
