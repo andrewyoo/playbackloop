@@ -4,14 +4,6 @@
 .container-fluid
   #playlist-player.row
     #now-playing.mt-2
-      /
-        .df.py-1.pr-2.mb-2 style='background-color: #f6e8cd; border-radius: 5px; padding-left: 10px; position: relative'
-        | I started a #{link_to 'GoFundMe for Lucy', 'https://www.gofundme.com/help-lucy-recover-40-years-worth-of', target: '_blank'} my housekeeper who was cheated out of her life savings. Please help if you can
-        /
-          .df.py-1.pr-2.mb-2 style='background-color: #f6e8cd; border-radius: 5px; padding-left: 36px; position: relative'
-            = image_tag 'dishfile_32.png', style: 'width: 20px; height: 20px; position: absolute; left: 8px; top: 6px', class: 'mr-2'
-            | In NYC? Check out my other project #{link_to 'Dishfile', 'https://www.dishfile.com', target: '_blank'} to find popular dishes by hashtags!
-      
       .row
         .col
           h1.h5.playlist-title alt=@playlist_info.description
@@ -48,6 +40,8 @@
       hr.mt-0
       .description
         pre
+      #begging_with_jokes
+      
     #playlist-wrapper
       #playlist-items
         .text-center.pt-4
@@ -56,4 +50,5 @@
         javascript:
           $(function() {
             $("#playlist-items").load("#{items_playlist_path(id: @playlist.playlist_id, sort: @sort_order)}");
+            $("#begging_with_jokes").load("#{joke_path}");
           });

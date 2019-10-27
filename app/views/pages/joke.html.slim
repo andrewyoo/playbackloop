@@ -1,0 +1,9 @@
+.alert.alert-info
+  .row
+    .col
+      .joke-title.small.mb-2
+        | Jokes for Donations 
+        = link_to 'What is this?', blog_path(slug: 'i-work-hard-so-my-cat-can-have-a-better-life'), class: 'small float-right', target: '_blank'
+      = @joke
+    .col-xs-auto
+      = image_tag 'venmo_me3.png', style: 'height: 100px;'
