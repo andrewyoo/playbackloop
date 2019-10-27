@@ -1,6 +1,6 @@
 - title "My Account"
 
-= render 'playlists/list_cards', playlists: @current_playlists, headline: 'Recently Watched'
+= render 'playlists/list_cards', playlists: @current_playlists, headline: 'Recently Watched', removable: true
 = render 'playlists/list_cards', playlists: @user_playlists, headline: 'My Playlists'
       
 .article.py-4
