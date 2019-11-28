@@ -1,7 +1,7 @@
 class Playlist
   attr_accessor :service, :playlist_id, :items, :max_results, :page_token, :title, :total
   
-  MAX_LOAD = 2000
+  MAX_LOAD = 1500
 
   def initialize(service, playlist_id)  
     @service = service
