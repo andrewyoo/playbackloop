@@ -1,17 +1,17 @@
-- title "#{@playlist_info.title} - #{@playlist_info.channel_title}"
-- meta_desc "#{@playlist_info.description}"
+- title "#{@youtube_playlist.title} - #{@youtube_playlist.channel_title}"
+- meta_desc "#{@youtube_playlist.description}"
 
 .container-fluid
   #playlist-player.row
     #now-playing.mt-2
       .row
         .col
-          h1.h5.playlist-title alt=@playlist_info.description
-            = @playlist_info.title
+          h1.h5.playlist-title alt=@youtube_playlist.description
+            = @youtube_playlist.title
             em.small
               |  by 
-              = link_to @playlist_info.channel_title, "https://www.youtube.com/channel/#{@playlist_info.channel_id}", target: '_blank'
-          
+              = link_to @youtube_playlist.channel_title, "https://www.youtube.com/channel/#{@youtube_playlist.youtube_channel_id}", target: '_blank'
+
         .col-md-auto.mb-2
           #play-actions.float-right
             #sort-menu
@@ -33,7 +33,7 @@
                   - sleep_timer_options.each do |text, secs|
                     a.dropdown-item href='#' data-value=secs
                       = text
-                  
+
       .player-wrapper
         iframe#player allowfullscreen='1' type="text/html" width="640" height="390" src==("https://www.youtube.com/embed/xxxxx?enablejsapi=1&origin=#{CGI.escape(root_url.chomp('/'))}&rel=0") frameborder="0"
       h5.title.mt-2.mb-0
@@ -41,7 +41,7 @@
       .description
         pre
       #begging_with_jokes
-      
+
     #playlist-wrapper
       #playlist-items
         .text-center.pt-4
