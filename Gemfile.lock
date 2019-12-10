@@ -66,6 +66,7 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
+    browser (2.7.1)
     builder (3.2.3)
     byebug (10.0.2)
     capybara (2.18.0)
@@ -295,6 +296,7 @@ DEPENDENCIES
   aws-sdk-opsworks
   aws-ses (~> 0.6.0)
   bootstrap (~> 4.0.0.beta2.1)
+  browser
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
