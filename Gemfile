@@ -34,6 +34,7 @@ gem 'omniauth-google-oauth2'
 gem 'exception_notification', ">= 4.2.0"
 gem 'aws-ses', '~> 0.6.0', require: 'aws/ses'
 gem 'httparty'
+gem 'browser'
 
 # deployment
 gem 'aws-sdk-opsworks'
