@@ -23,7 +23,7 @@ class PlaylistsController < ApplicationController
 
   def items
     return head(:ok) if browser.bot?
-    
+
     @playlist = Playlist.new(@ys, params[:id])
     begin
       @playlist.load_playlist

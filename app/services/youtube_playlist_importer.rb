@@ -23,7 +23,7 @@ class YoutubePlaylistImporter
       yp.description = snippet.description
       yp.channel_title = snippet.channel_title
       yp.youtube_channel_id = snippet.channel_id
-      yp.playlist_count = content_details.item_count
+      yp.playlist_count = content_details.item_count if content_details.present?
       yp.thumbnail_url = (snippet.thumbnails.high || snippet.thumbnails.standard).try(:url)
       yp.updated_at = Time.current
     end
