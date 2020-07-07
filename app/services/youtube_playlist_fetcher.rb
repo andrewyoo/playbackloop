@@ -17,7 +17,7 @@ class YoutubePlaylistFetcher
   private
 
   def default_parts
-    'snippet, content_details'
+    'snippet,content_details'
   end
 
   def ids_to_s

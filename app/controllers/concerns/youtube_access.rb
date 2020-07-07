@@ -47,7 +47,7 @@ module YoutubeAccess
   end
 
   def youtube_channel(channel_id)
-    @ys.list_channels('snippet, content_details', id: channel_id).items.first
+    @ys.list_channels('snippet,content_details', id: channel_id).items.first
   end
 
   def cookie_playlist_ids
