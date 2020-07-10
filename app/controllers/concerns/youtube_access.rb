@@ -25,7 +25,7 @@ module YoutubeAccess
     if current_user
       playlist_ids = current_user.views.playlist.recently_played.limit(limit).pluck(:list_id)
     else
-      playlist_ids = cookie_playlist_ids
+      playlist_ids = cookie_playlist_ids.last(limit).reverse
     end
     youtube_playlist(playlist_ids)
   end
