@@ -40,8 +40,13 @@ coffee:
   updateCookie = (video_id) ->
     h = {}
     h[playlist_id] = [video_id, sort_order]
-    cookie = Cookies.getJSON('playlists')
-    Cookies.set('playlists', $.extend(cookie, h), { expires: 365 })
+    playlists = Cookies.getJSON('playlists')
+    playlists = $.extend(playlists, h)
+    keys = Object.keys(playlists)
+    # keep last 30 to prevent cookie overflow
+    key_to_delete = keys.slice(0, Math.max(keys.length - 30, 0))
+    $.each(key_to_delete, (i, val) => delete playlists[val])
+    Cookies.set('playlists', playlists, { expires: 365 })
 
   lastPlayedVid = ->
     cookie = Cookies.getJSON('playlists')
